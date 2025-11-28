@@ -13,35 +13,35 @@ const PriavteChatTab = () => {
       online: true,
     },
     {
-      profileImgSrc: require("@/assets/images/favicon.png"),
+      profileImgSrc: require("../../assets/images/favicon.png"),
       firstName: "Maniang",
       lastName: "Fall",
       color: "red",
       online: false,
     },
     {
-      profileImgSrc: require("@/assets/images/react-logo.png"),
+      profileImgSrc: require("../../assets/images/react-logo.png"),
       firstName: "Serigne Fadilou",
       lastName: "Fall",
       color: "grey",
       online: true,
     },
     {
-      profileImgSrc: require("@/assets/images/favicon.png"),
+      profileImgSrc: require("../../assets/images/favicon.png"),
       firstName: "Bara",
       lastName: "Ndiaye",
       color: "green",
       online: false,
     },
     {
-      profileImgSrc: require("@/assets/images/react-logo.png"),
+      profileImgSrc: require("../../assets/images/react-logo.png"),
       firstName: "Fatou",
       lastName: "Diop",
       color: "orange",
       online: true,
     },
     {
-      profileImgSrc: require("@/assets/images/favicon.png"),
+      profileImgSrc: require("../../assets/images/favicon.png"),
       firstName: "Astou Gawane",
       lastName: "Gaye",
       color: "gold",
@@ -49,48 +49,27 @@ const PriavteChatTab = () => {
     },
   ];
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.top}>
         <Text style={styles.title}>Messages</Text>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-around",
-          }}
-        >
-          <View
-            style={{
-              borderRadius: 50,
-              borderColor: "#ededed",
-              borderWidth: 1,
-            }}
-          >
+        <View style={styles.iconsContainer}>
+          <View style={styles.iconSearchContainer}>
             <FontAwesome
               name="search"
               size={18}
               color="black"
-              style={{ margin: 8 }}
+              style={styles.iconSearch}
             />
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              columnGap: 10,
-              borderRadius: 50,
-              borderColor: "#ededed",
-              borderWidth: 1,
-              padding: 8,
-            }}
-          >
-            <FontAwesome6 name="user-plus" size={20} color="black" />
+          <View style={styles.addFriendsBtn}>
+            <FontAwesome6 name="user-plus" size={20} color="grey" />
             <Text>Ajouter des amis</Text>
           </View>
         </View>
       </View>
       <ScrollView
         horizontal={true}
-        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         style={styles.middle}
       >
         {userContacts.map(({ color, online }, index: number) => {
@@ -102,13 +81,18 @@ const PriavteChatTab = () => {
           );
         })}
       </ScrollView>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    marginLeft: "4.5%",
+  },
   title: {
-    fontSize: 16,
+    fontSize: 18,
+    marginLeft: 12,
   },
   top: {
     width: "90%",
@@ -116,8 +100,13 @@ const styles = StyleSheet.create({
     rowGap: 20,
   },
   middle: {
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 21,
+    marginBottom: 21,
+  },
+  iconsContainer: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-evenly",
   },
   contact: {
     position: "relative",
@@ -132,6 +121,23 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
   },
+  iconSearchContainer: {
+    borderRadius: "50%",
+    borderColor: "#ededed",
+    borderWidth: 1,
+    paddingHorizontal: 1,
+  },
+  addFriendsBtn: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    columnGap: 10,
+    borderRadius: 50,
+    borderColor: "#ededed",
+    borderWidth: 1,
+    paddingHorizontal: 10,
+  },
+  iconSearch: { margin: 8 },
 });
 
 export default PriavteChatTab;

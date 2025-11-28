@@ -1,52 +1,68 @@
-import { Feather, FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { useState } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
-import { ChatGroupDataType } from "@/components/home_components/interfaces";
-import ChatGroupTabs from "@/components/home_components/chat_group_tabs";
-import PriavteChatTab from "@/components/home_components/private_chat_tab";
+import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import { ChatGroupDataType } from "../../components/home_components/interfaces";
+import ChatGroupTabs from "../../components/home_components/chat_group_tabs";
+import PriavteChatTab from "../../components/home_components/private_chat_tab";
 
 const Home = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(1);
   const chatGroupsData: ChatGroupDataType[] = [
     {
+      groupTitle: "Programmation",
+      salonsTitle: ["Salons textuels", "Salons vocaux"],
+      salons: [
+        ["programmation-c", "programmation-web-html-css-js"],
+        ["Général"],
+      ],
+      groupIconSrc: "",
+      totalMember: 23,
+      totalMemberOnline: 1,
+    },
+    {
       groupTitle: "INFOGRAPHIE UCAD",
-      salonsTitle: [],
-      salons: [],
+      salonsTitle: ["Salons textuels", "Salons vocaux"],
+      salons: [["Général"], ["Général"]],
       groupIconSrc: "",
       totalMember: 25,
       totalMemberOnline: 5,
     },
   ];
   const tabs: React.JSX.Element[] = [
-    <PriavteChatTab />,
+    <PriavteChatTab key={0} />,
     ...chatGroupsData.map((each, index: number) => {
-      return <ChatGroupTabs key={index} {...each} />;
+      return <ChatGroupTabs key={index + 1} {...each} />;
     }),
   ];
+
   return (
     <View style={styles.container}>
-      <View style={styles.containerLeft}>
-        <Feather
+      <ScrollView
+        contentContainerStyle={{ alignItems: "center", rowGap: 10 }}
+        style={styles.containerLeft}
+      >
+        <FontAwesome
           key={0}
-          name="message-circle"
-          size={50}
-          style={{ ...styles.MsgIcon, color: tabIndex == 0 ? "black" : "grey" }}
+          size={45}
+          style={styles.commentIcon}
+          color={tabIndex === 0 ? "black" : "grey"}
+          name={tabIndex === 0 ? "comment" : "comment-o"}
           onPress={() => setTabIndex(0)}
         />
-        <View>
-          {chatGroupsData.map(({}, index: number) => {
+        <View style={styles.chatGroupsIconsContainer}>
+          {chatGroupsData.map((_, index: number) => {
             return (
               <FontAwesome5
                 key={index + 1}
                 name="users"
                 size={40}
-                style={{ color: tabIndex == index + 1 ? "black" : "grey" }}
+                style={{ color: tabIndex === index + 1 ? "black" : "grey" }}
                 onPress={() => setTabIndex(index + 1)}
               />
             );
           })}
         </View>
-      </View>
+      </ScrollView>
       <View style={styles.containerRight}>{tabs[tabIndex]}</View>
     </View>
   );
@@ -67,7 +83,6 @@ const styles = StyleSheet.create({
     width: width * 0.2,
     height: height,
     backgroundColor: "#ededed",
-    alignItems: "center",
   },
   containerRight: {
     position: "absolute",
@@ -79,10 +94,14 @@ const styles = StyleSheet.create({
     borderStartStartRadius: 0.1 * width,
     alignItems: "center",
   },
-  MsgIcon: {
-    marginTop: 40,
+  commentIcon: {
+    marginTop: 30,
+    paddingVertical: 10,
     borderBottomWidth: 0.3,
     borderBlockColor: "#ededed",
+  },
+  chatGroupsIconsContainer: {
+    rowGap: 10,
   },
   chatGroupsIcons: {
     marginTop: 15,

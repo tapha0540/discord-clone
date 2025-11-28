@@ -1,6 +1,5 @@
 import { Slot, SplashScreen } from "expo-router";
 import { useEffect, useState } from "react";
-
 import { Image, StyleSheet, View } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
@@ -11,13 +10,13 @@ const App = () => {
     setTimeout(async () => {
       setIsReady(true);
       await SplashScreen.hideAsync();
-    }, 2000);
+    }, 2500);
   }, []);
   if (!isReady) {
     return (
       <View style={styles.container}>
         <Image
-          source={require("@/assets/images/react-logo.png")}
+          source={require("../assets/images/react-logo.png")}
           width={100}
           height={100}
         />
