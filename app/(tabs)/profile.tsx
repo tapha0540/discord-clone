@@ -21,14 +21,13 @@ const Profile = () => {
   return (
     <ScrollView style={styles.container}>
       <Top />
-      <Middle />
       <Bottom />
     </ScrollView>
   );
 };
 
 const Top = () => {
-  const randomTexts: string[] = [
+  const quotes: string[] = [
     "Ajouter un statut",
     "Si ta vie avait un générique...",
     "Dans quel monde de fiction aimerais-tu vivre ?",
@@ -55,60 +54,16 @@ const Top = () => {
           <Fontisto name="player-settings" size={20} color="white" />
         </Pressable>
       </View>
-      <View
-        style={{
-          position: "absolute",
-          bottom: "-25%",
-          flexDirection: "row",
-          columnGap: 15,
-          alignSelf: "center",
-        }}
-      >
+      <View style={styles.profileDataContainer}>
         <Pressable style={styles.profileImgContainer}>
           <FontAwesome name="user-circle" size={70} color="black" />
           <OnlineStatusIndicator online={false} right={4} bottom={4} />
         </Pressable>
-        <Pressable
-          style={{
-            flexDirection: "row",
-            columnGap: 5,
-            padding: 5,
-            maxWidth: "80%",
-            backgroundColor: "white",
-            borderRadius: 17,
-            alignItems: "center",
-            borderWidth: 1,
-            borderColor: "#ededed",
-            alignSelf: "flex-end",
-            position: "relative",
-            top: "20%",
-          }}
-        >
-          <FontAwesome6
-            name="circle-plus"
-            size={20}
-            color="black"
-            style={{ position: "relative", marginHorizontal: "1%" }}
-          />
-          <View
-            style={{
-              minWidth: "auto",
-              maxWidth: "80%",
-            }}
-          >
-            <Text
-              ellipsizeMode="tail"
-              style={{
-                textAlign: "center",
-                fontWeight: "light",
-                flexWrap: "wrap",
-                fontSize: 12.5,
-                color: "grey",
-              }}
-            >
-              {
-                randomTexts[3 /*Math.floor(Math.random() * randomTexts.length)*/]
-              }
+        <Pressable style={styles.profileStatus}>
+          <FontAwesome6 name="circle-plus" size={20} color="black" />
+          <View style={styles.quoteContainer}>
+            <Text ellipsizeMode="tail" style={styles.quote}>
+              {quotes[Math.floor(Math.random() * quotes.length)]}
             </Text>
           </View>
         </Pressable>
@@ -117,26 +72,53 @@ const Top = () => {
   );
 };
 
-const Middle = () => {
+const Bottom = () => {
   return (
     <View style={styles.middle}>
       <View style={styles.userCredentialContainer}>
         <Pressable style={styles.userNameContainer}>
-          <Text>Username</Text>
-          <SimpleLineIcons name="arrow-down" size={20} color="black" />
+          <Text style={styles.userName}>Moustapha Fall</Text>
+          <SimpleLineIcons name="arrow-down" size={15} color="darkgrey" />
         </Pressable>
-        <Text>pseudoName</Text>
+        <Text style={styles.userId}>pseudoName</Text>
       </View>
       <Pressable style={styles.editProfileBtn}>
         <MaterialIcons name="edit" size={20} color="white" />
         <Text style={styles.editBtnTxt}>Modifier le profile</Text>
       </Pressable>
+      <View style={styles.userSignUpDateContainer}>
+        <Text>Membre depuis</Text>
+        <View style={{ flexDirection: "row", columnGap: 10 }}>
+          <MaterialIcons name="chat" size={25} color="black" />
+          <Text style={styles.userSignUpDate}>3 juin 2025</Text>
+        </View>
+      </View>
+      <Pressable style={styles.addFriendsbtn}>
+        <Text
+          style={{
+            fontWeight: "medium",
+            fontSize: 16,
+            position: "relative",
+            left: "-52%",
+          }}
+        >
+          Amis
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            columnGap: 15,
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <FontAwesome name="user-circle" size={25} color="black" />
+          <SimpleLineIcons name="arrow-right" size={15} color="black" />
+        </View>
+        <View style={styles.notebook}></View>
+      </Pressable>
     </View>
   );
-};
-
-const Bottom = () => {
-  return <View style={styles.bottom}></View>;
 };
 
 const { width, height } = Dimensions.get("screen");
@@ -144,7 +126,7 @@ const { width, height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#dfe6f5",
     width: width,
     height: height,
   },
@@ -155,9 +137,8 @@ const styles = StyleSheet.create({
   },
   middle: {
     width: width * 0.95,
-    height: height * 0.2,
     marginLeft: width * 0.025,
-    marginTop: 60,
+    marginTop: 80,
     alignItems: "center",
     rowGap: 20,
   },
@@ -186,8 +167,42 @@ const styles = StyleSheet.create({
     borderWidth: 0.15,
     borderColor: "darkgrey",
   },
+  profileDataContainer: {
+    position: "absolute",
+    bottom: "-25%",
+    flexDirection: "row",
+    columnGap: 10,
+    marginLeft: "5%",
+    justifyContent: "space-between",
+  },
+  quote: {
+    textAlign: "center",
+    fontWeight: "light",
+    flexWrap: "wrap",
+    fontSize: 12.5,
+    color: "grey",
+  },
+  quoteContainer: {
+    minWidth: "auto",
+    maxWidth: "80%",
+  },
+  profileStatus: {
+    flexDirection: "row",
+    columnGap: 5,
+    padding: 5,
+    maxWidth: "80%",
+    backgroundColor: "white",
+    borderRadius: 17,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ededed",
+    alignSelf: "flex-end",
+    position: "relative",
+    top: "20%",
+  },
   editProfileBtn: {
-    width: "90%",
+    minWidth: width * 0.95,
+    maxWidth: 350,
     flexDirection: "row",
     backgroundColor: "blue",
     paddingHorizontal: 20,
@@ -200,16 +215,46 @@ const styles = StyleSheet.create({
   editBtnTxt: { color: "white" },
   userCredentialContainer: {
     width: "90%",
+    marginBottom: 15,
   },
   userNameContainer: {
     flexDirection: "row",
     columnGap: 15,
+    alignItems: "center",
   },
+  userName: { fontSize: 25, fontWeight: "900" },
+  userId: { fontWeight: "100", fontSize: 14 },
   profileImgContainer: {
     position: "relative",
     justifyContent: "center",
     alignItems: "center",
   },
+  addFriendsbtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    width: width * 0.95,
+    columnGap: 30,
+    backgroundColor: "white",
+    padding: 15,
+    borderRadius: 17,
+    borderColor: "lightgrey",
+    borderWidth: 1,
+  },
+  userSignUpDateContainer: {
+    width: width * 0.95,
+    rowGap: 15,
+    backgroundColor: "white",
+    padding: 12.5,
+    borderRadius: 17,
+    borderColor: "lightgrey",
+    borderWidth: 1,
+  },
+  userSignUpDate: {
+    fontSize: 14,
+    fontWeight: "light",
+  },
+  notebook: {},
 });
 
 export default Profile;
