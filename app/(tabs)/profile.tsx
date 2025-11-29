@@ -1,5 +1,8 @@
+import OnlineStatusIndicator from "../../components/home_components/online_status_indicator";
 import {
   Entypo,
+  FontAwesome,
+  FontAwesome6,
   Fontisto,
   MaterialIcons,
   SimpleLineIcons,
@@ -14,7 +17,27 @@ import {
   View,
 } from "react-native";
 
-const TopProfile = () => {
+const Profile = () => {
+  return (
+    <ScrollView style={styles.container}>
+      <Top />
+      <Middle />
+      <Bottom />
+    </ScrollView>
+  );
+};
+
+const Top = () => {
+  const randomTexts: string[] = [
+    "Ajouter un statut",
+    "Si ta vie avait un générique...",
+    "Dans quel monde de fiction aimerais-tu vivre ?",
+    "Quel est le talent le plus inutile que tu possèdes ?",
+    "Qu'est-ce que tu as regardé récemment",
+    "À quoi tu penses, en ce moment ?",
+    "Ton anime préféré du moment ?",
+  ];
+
   return (
     <ImageBackground
       source={require("../../assets/images/partial-react-logo.png")}
@@ -32,14 +55,72 @@ const TopProfile = () => {
           <Fontisto name="player-settings" size={20} color="white" />
         </Pressable>
       </View>
+      <View
+        style={{
+          position: "absolute",
+          bottom: "-25%",
+          flexDirection: "row",
+          columnGap: 15,
+          alignSelf: "center",
+        }}
+      >
+        <Pressable style={styles.profileImgContainer}>
+          <FontAwesome name="user-circle" size={70} color="black" />
+          <OnlineStatusIndicator online={false} right={4} bottom={4} />
+        </Pressable>
+        <Pressable
+          style={{
+            flexDirection: "row",
+            columnGap: 5,
+            padding: 5,
+            maxWidth: "80%",
+            backgroundColor: "white",
+            borderRadius: 17,
+            alignItems: "center",
+            borderWidth: 1,
+            borderColor: "#ededed",
+            alignSelf: "flex-end",
+            position: "relative",
+            top: "20%",
+          }}
+        >
+          <FontAwesome6
+            name="circle-plus"
+            size={20}
+            color="black"
+            style={{ position: "relative", marginHorizontal: "1%" }}
+          />
+          <View
+            style={{
+              minWidth: "auto",
+              maxWidth: "80%",
+            }}
+          >
+            <Text
+              ellipsizeMode="tail"
+              style={{
+                textAlign: "center",
+                fontWeight: "light",
+                flexWrap: "wrap",
+                fontSize: 12.5,
+                color: "grey",
+              }}
+            >
+              {
+                randomTexts[3 /*Math.floor(Math.random() * randomTexts.length)*/]
+              }
+            </Text>
+          </View>
+        </Pressable>
+      </View>
     </ImageBackground>
   );
 };
 
-const MiddleProfile = () => {
+const Middle = () => {
   return (
     <View style={styles.middle}>
-      <View>
+      <View style={styles.userCredentialContainer}>
         <Pressable style={styles.userNameContainer}>
           <Text>Username</Text>
           <SimpleLineIcons name="arrow-down" size={20} color="black" />
@@ -48,24 +129,14 @@ const MiddleProfile = () => {
       </View>
       <Pressable style={styles.editProfileBtn}>
         <MaterialIcons name="edit" size={20} color="white" />
-        <Text style={{ color: "white" }}>Modifier le profile</Text>
+        <Text style={styles.editBtnTxt}>Modifier le profile</Text>
       </Pressable>
     </View>
   );
 };
 
-const BottomProfile = () => {
+const Bottom = () => {
   return <View style={styles.bottom}></View>;
-};
-
-const Profile = () => {
-  return (
-    <ScrollView style={styles.container}>
-      <TopProfile />
-      <MiddleProfile />
-      <BottomProfile />
-    </ScrollView>
-  );
 };
 
 const { width, height } = Dimensions.get("screen");
@@ -83,10 +154,12 @@ const styles = StyleSheet.create({
     top: 0,
   },
   middle: {
-    width: width,
+    width: width * 0.95,
     height: height * 0.2,
-    marginTop: 25,
+    marginLeft: width * 0.025,
+    marginTop: 60,
     alignItems: "center",
+    rowGap: 20,
   },
   bottom: {},
   headings: {
@@ -114,7 +187,7 @@ const styles = StyleSheet.create({
     borderColor: "darkgrey",
   },
   editProfileBtn: {
-    width: width * 0.9,
+    width: "90%",
     flexDirection: "row",
     backgroundColor: "blue",
     paddingHorizontal: 20,
@@ -124,8 +197,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     columnGap: 5,
   },
+  editBtnTxt: { color: "white" },
+  userCredentialContainer: {
+    width: "90%",
+  },
   userNameContainer: {
     flexDirection: "row",
+    columnGap: 15,
+  },
+  profileImgContainer: {
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

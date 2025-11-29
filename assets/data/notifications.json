@@ -1,31 +1,31 @@
 [
   {
-    "imgSrc": "@/assets/images/react-logo.png",
+    "imgSrc": "react-logo",
     "title": "Tu as reçu de nouveaux messages dans w3schools.",
     "date": 9
   },
   {
-    "imgSrc": "../../assets/images/react-logo.png",
+    "imgSrc": "partial-react-logo",
     "title": "Tu as reçu de nouveaux messages dans w3schools.",
     "date": 24
   },
   {
-    "imgSrc": "../../assets/images/react-logo.png",
+    "imgSrc": "react-logo",
     "title": "Tu as reçu de nouveaux messages dans w3schools.",
     "date": 26
   },
   {
-    "imgSrc": "../../assets/images/react-logo.png",
+    "imgSrc": "partial-react-logo",
     "title": "Tu as reçu de nouveaux messages dans w3schools.",
     "date": 29
   },
   {
-    "imgSrc": "../../assets/images/react-logo.png",
+    "imgSrc": "react-logo",
     "title": "Tu as reçu de nouveaux messages dans w3schools.",
     "date": 30
   },
   {
-    "imgSrc": "../../assets/images/react-logo.png",
+    "imgSrc": "partial-react-logo",
     "title": "Tu as reçu de nouveaux messages dans w3schools.",
     "date": 31
   }

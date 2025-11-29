@@ -1,13 +1,25 @@
 import { StyleSheet, View } from "react-native";
 
-const OnlineStatusIndicator = ({ online }: { online: boolean }) => {
+const OnlineStatusIndicator = ({
+  online,
+  right,
+  bottom,
+}: {
+  online: boolean;
+  right: number;
+  bottom: number;
+}) => {
   return (
     <View
-      style={{
-        ...styles.onlineStatusIndicator,
-        backgroundColor: online ? "green" : "white",
-        borderColor: online ? "green" : "grey",
-      }}
+      style={[
+        styles.onlineStatusIndicator,
+        {
+          backgroundColor: online ? "green" : "white",
+          borderColor: online ? "green" : "grey",
+          right: `${right}%`,
+          bottom: `${bottom}%`,
+        },
+      ]}
     ></View>
   );
 };
@@ -15,10 +27,8 @@ const OnlineStatusIndicator = ({ online }: { online: boolean }) => {
 const styles = StyleSheet.create({
   onlineStatusIndicator: {
     position: "absolute",
-    bottom: "20%",
-    right: "20%",
-    width: 12,
-    height: 12,
+    width: "23%",
+    height: "23%",
     borderRadius: 60,
     borderWidth: 4,
     outlineColor: "white",

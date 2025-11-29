@@ -50,7 +50,9 @@ const TabLayout = () => {
         options={{
           title: "Toi",
           tabBarIcon: ({ color, size }) => {
-            return <FontAwesome name="user-circle" size={size} color={color} />;
+            return (
+              <FontAwesome name="user-circle-o" size={size} color={color} />
+            );
           },
         }}
       />

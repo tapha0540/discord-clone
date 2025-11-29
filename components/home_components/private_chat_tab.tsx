@@ -76,7 +76,7 @@ const PriavteChatTab = () => {
           return (
             <View key={index} style={styles.contact}>
               <FontAwesome6 name="circle-user" size={50} color={color} />
-              <OnlineStatusIndicator online={online} />
+              <OnlineStatusIndicator online={online} bottom={20} right={20} />
             </View>
           );
         })}

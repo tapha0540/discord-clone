@@ -8,6 +8,11 @@ interface NotificationType {
   date: number;
 }
 
+const images: Map<string, string> = new Map([
+  ["react-logo", require("../../assets/images/react-logo.png")],
+  ["partial-react-logo", require("../../assets/images/partial-react-logo.png")],
+]);
+
 const Notification = () => {
   return (
     <ScrollView style={styles.container}>
@@ -17,7 +22,9 @@ const Notification = () => {
           return (
             <View key={index} style={styles.notificationContainer}>
               <Image
-                source={{ uri: notification.imgSrc }}
+                source={
+                  images.get(notification.imgSrc) ?? images.get("react-logo")
+                }
                 style={styles.notificationImg}
               />
               <Text style={styles.notificationTitle}>{notification.title}</Text>
