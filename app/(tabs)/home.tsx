@@ -4,69 +4,79 @@ import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 import { ChatGroupDataType } from "../../components/home_components/interfaces";
 import ChatGroupTabs from "../../components/home_components/chat_group_tabs";
 import PriavteChatTab from "../../components/home_components/private_chat_tab";
+import chatGroupsData from "../../assets/data/chat_groups_data.json";
 
 const Home = () => {
-  const [tabIndex, setTabIndex] = useState(1);
-  const chatGroupsData: ChatGroupDataType[] = [
-    {
-      groupTitle: "Programmation",
-      salonsTitle: ["Salons textuels", "Salons vocaux"],
-      salons: [
-        ["programmation-c", "programmation-web-html-css-js"],
-        ["Général"],
-      ],
-      groupIconSrc: "",
-      totalMember: 23,
-      totalMemberOnline: 1,
-    },
-    {
-      groupTitle: "INFOGRAPHIE UCAD",
-      salonsTitle: ["Salons textuels", "Salons vocaux"],
-      salons: [["Général"], ["Général"]],
-      groupIconSrc: "",
-      totalMember: 25,
-      totalMemberOnline: 5,
-    },
-  ];
+  const [tabIndex, setTabIndex] = useState(0);
   const tabs: React.JSX.Element[] = [
     <PriavteChatTab key={0} />,
-    ...chatGroupsData.map((each, index: number) => {
+    ...chatGroupsData.map((each: ChatGroupDataType, index: number) => {
       return <ChatGroupTabs key={index + 1} {...each} />;
     }),
   ];
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        contentContainerStyle={{ alignItems: "center", rowGap: 10 }}
-        style={styles.containerLeft}
-      >
-        <FontAwesome
-          key={0}
-          size={45}
-          style={styles.commentIcon}
-          color={tabIndex === 0 ? "black" : "grey"}
-          name={tabIndex === 0 ? "comment" : "comment-o"}
-          onPress={() => setTabIndex(0)}
-        />
-        <View style={styles.chatGroupsIconsContainer}>
-          {chatGroupsData.map((_, index: number) => {
-            return (
-              <FontAwesome5
-                key={index + 1}
-                name="users"
-                size={40}
-                style={{ color: tabIndex === index + 1 ? "black" : "grey" }}
-                onPress={() => setTabIndex(index + 1)}
-              />
-            );
-          })}
-        </View>
-      </ScrollView>
-      <View style={styles.containerRight}>{tabs[tabIndex]}</View>
+      <Left
+        tabIndex={tabIndex}
+        setTabIndex={setTabIndex}
+        chatGroupsData={chatGroupsData}
+      />
+      <Right tabIndex={tabIndex} tabs={tabs} />
     </View>
   );
 };
+
+const Left = ({
+  tabIndex,
+  setTabIndex,
+  chatGroupsData,
+}: {
+  tabIndex: number;
+  setTabIndex: React.Dispatch<React.SetStateAction<number>>;
+  chatGroupsData: ChatGroupDataType[];
+}) => {
+  return (
+    <ScrollView
+      contentContainerStyle={{ alignItems: "center", rowGap: 10 }}
+      style={styles.containerLeft}
+    >
+      <FontAwesome
+        key={0}
+        size={45}
+        style={styles.commentIcon}
+        color={tabIndex === 0 ? "black" : "grey"}
+        name={tabIndex === 0 ? "comment" : "comment-o"}
+        onPress={() => setTabIndex(0)}
+      />
+      <View style={styles.chatGroupsIconsContainer}>
+        {chatGroupsData.map((_, index) => {
+          const actualIndex: number = index + 1;
+          return (
+            <FontAwesome5
+              key={actualIndex}
+              name="users"
+              size={40}
+              style={{ color: tabIndex === actualIndex ? "black" : "grey" }}
+              onPress={() => setTabIndex(actualIndex)}
+            />
+          );
+        })}
+      </View>
+    </ScrollView>
+  );
+};
+
+const Right = ({
+  tabIndex,
+  tabs,
+}: {
+  tabIndex: number;
+  tabs: React.JSX.Element[];
+}) => {
+  return <View style={styles.containerRight}>{tabs[tabIndex]}</View>;
+};
+
 const { width, height } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({

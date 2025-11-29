@@ -1,0 +1,21 @@
+[
+  {
+    "groupTitle": "Programmation",
+    "salonsTitle": ["Salons textuels", "Salons vocaux"],
+    "salons": [
+      ["programmation-c", "programmation-web-html-css-js"],
+      ["Général"]
+    ],
+    "groupIconSrc": "",
+    "totalMember": 23,
+    "totalMemberOnline": 1
+  },
+  {
+    "groupTitle": "INFOGRAPHIE UCAD",
+    "salonsTitle": ["Salons textuels", "Salons vocaux"],
+    "salons": [["Général"], ["Général"]],
+    "groupIconSrc": "",
+    "totalMember": 25,
+    "totalMemberOnline": 5
+  }
+]

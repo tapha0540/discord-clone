@@ -18,46 +18,36 @@ const ChatGroupTabs = ({
 }: ChatGroupDataType) => {
   return (
     <View style={styles.container}>
-      {/* Group tab Title */}
-      <View style={styles.top}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.chatGroupTitle}>{groupTitle}</Text>
-          <SimpleLineIcons name="arrow-right" size={15} color="black" />
-        </View>
-        <View style={styles.iconsContainers}>
-          <View style={styles.searchIconContainer}>
-            <FontAwesome name="search" size={20} color="black" />
-            <Text style={styles.seachIconText}>Rechercher</Text>
-          </View>
-          <View style={styles.iconContainer}>
-            <AntDesign name="usergroup-add" size={20} color="black" />
-          </View>
-          <View style={styles.iconContainer}>
-            <FontAwesome6 name="calendar-day" size={20} color="black" />
-          </View>
-        </View>
+      <Top groupTitle={groupTitle} />
+      <Middle salons={salons} salonsTitle={salonsTitle} />
+    </View>
+  );
+};
+
+const Top = ({ groupTitle }: { groupTitle: string }) => {
+  return (
+    <View style={styles.top}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.chatGroupTitle}>{groupTitle}</Text>
+        <SimpleLineIcons name="arrow-right" size={15} color="black" />
       </View>
-      {/* Salons */}
-      <View style={styles.middle}>
-        {salonsTitle.map((salonTitle: string, index: number) => {
-          if (index > salons.length || salons[index].length === 0) {
-            return null;
-          }
-          return (
-            <DisplaySalon
-              key={index}
-              salonTitle={salonTitle}
-              index={index}
-              salon={salons[index]}
-            />
-          );
-        })}
+      <View style={styles.iconsContainers}>
+        <View style={styles.searchIconContainer}>
+          <FontAwesome name="search" size={20} color="black" />
+          <Text style={styles.seachIconText}>Rechercher</Text>
+        </View>
+        <View style={styles.iconContainer}>
+          <AntDesign name="usergroup-add" size={20} color="black" />
+        </View>
+        <View style={styles.iconContainer}>
+          <FontAwesome6 name="calendar-day" size={20} color="black" />
+        </View>
       </View>
     </View>
   );
 };
 
-const DisplaySalon = ({
+const SalonDisplay = ({
   salonTitle,
   salon,
   index,
@@ -92,6 +82,32 @@ const DisplaySalon = ({
             );
           })}
       </View>
+    </View>
+  );
+};
+
+const Middle = ({
+  salons,
+  salonsTitle,
+}: {
+  salons: string[][];
+  salonsTitle: string[];
+}) => {
+  return (
+    <View style={styles.middle}>
+      {salonsTitle.map((salonTitle: string, index: number) => {
+        if (index > salons.length || salons[index].length === 0) {
+          return null;
+        }
+        return (
+          <SalonDisplay
+            key={index}
+            salonTitle={salonTitle}
+            index={index}
+            salon={salons[index]}
+          />
+        );
+      })}
     </View>
   );
 };

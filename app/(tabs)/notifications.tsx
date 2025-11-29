@@ -1,52 +1,23 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
+import notifications from "../../assets/data/notifications.json";
 
-const Notifications = () => {
+interface NotificationType {
+  imgSrc: string;
+  title: string;
+  date: number;
+}
+
+const Notification = () => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Notifications récente</Text>
       <View style={styles.notifications}>
-        {[
-          {
-            imgSrc: require("../../assets/images/react-logo.png"),
-            title: "Tu as reçu de nouveaux messages dans w3schools.",
-            date: 9,
-          },
-          {
-            imgSrc: require("@/assets/images/favicon.png"),
-            title: "Tu as reçu de nouveaux messages dans w3schools.",
-            date: 24,
-          },
-          {
-            imgSrc: require("@/assets/images/react-logo.png"),
-            title: "Tu as reçu de nouveaux messages dans w3schools.",
-            date: 26,
-          },
-          {
-            imgSrc: require("@/assets/images/favicon.png"),
-            title: "Tu as reçu de nouveaux messages dans w3schools.",
-            date: 28,
-          },
-          {
-            imgSrc: require("@/assets/images/react-logo.png"),
-            title: "Tu as reçu de nouveaux messages dans w3schools.",
-            date: 29,
-          },
-          {
-            imgSrc: require("@/assets/images/favicon.png"),
-            title: "Tu as reçu de nouveaux messages dans w3schools.",
-            date: 30,
-          },
-          {
-            imgSrc: require("@/assets/images/react-logo.png"),
-            title: "Tu as reçu de nouveaux messages dans w3schools.",
-            date: 31,
-          },
-        ].map((notification, index: number) => {
+        {notifications.map((notification: NotificationType, index: number) => {
           return (
             <View key={index} style={styles.notificationContainer}>
               <Image
-                source={notification.imgSrc}
+                source={{ uri: notification.imgSrc }}
                 style={styles.notificationImg}
               />
               <Text style={styles.notificationTitle}>{notification.title}</Text>
@@ -85,7 +56,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   notificationTitle: {
-    color: "darkgrey",
+    color: "grey",
     textAlign: "center",
     width: "60%",
     fontWeight: "normal",
@@ -104,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Notifications;
+export default Notification;
