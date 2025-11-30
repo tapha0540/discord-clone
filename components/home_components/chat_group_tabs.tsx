@@ -73,12 +73,10 @@ const SalonDisplay = ({
         {isPressed &&
           salon.map((element, index: number) => {
             return (
-              <View key={index} style={styles.salonItem}>
+              <Pressable key={index} style={styles.salonItem}>
                 <FontAwesome name="hashtag" size={15} color="grey" />
-                <Text style={{ textOverflow: "ellipsis", color: "grey" }}>
-                  {element}
-                </Text>
-              </View>
+                <Text style={{ color: "grey" }}>{element}</Text>
+              </Pressable>
             );
           })}
       </View>

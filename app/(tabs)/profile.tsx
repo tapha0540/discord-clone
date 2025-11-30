@@ -7,6 +7,7 @@ import {
   MaterialIcons,
   SimpleLineIcons,
 } from "@expo/vector-icons";
+import { useState } from "react";
 import {
   Dimensions,
   ImageBackground,
@@ -14,6 +15,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from "react-native";
 
@@ -74,7 +76,7 @@ const Top = () => {
 
 const Bottom = () => {
   return (
-    <View style={styles.middle}>
+    <View style={styles.bottom}>
       <View style={styles.userCredentialContainer}>
         <Pressable style={styles.userNameContainer}>
           <Text style={styles.userName}>Moustapha Fall</Text>
@@ -98,8 +100,6 @@ const Bottom = () => {
           style={{
             fontWeight: "medium",
             fontSize: 16,
-            position: "relative",
-            left: "-52%",
           }}
         >
           Amis
@@ -109,14 +109,34 @@ const Bottom = () => {
             flexDirection: "row",
             columnGap: 15,
             alignItems: "center",
-            justifyContent: "space-between",
           }}
         >
           <FontAwesome name="user-circle" size={25} color="black" />
           <SimpleLineIcons name="arrow-right" size={15} color="black" />
         </View>
-        <View style={styles.notebook}></View>
       </Pressable>
+      <Notebook />
+    </View>
+  );
+};
+
+const Notebook = () => {
+  const [notebookValue, setNotebookValue] = useState("");
+  return (
+    <View style={styles.notebook}>
+      <View style={styles.notebookHead}>
+        <Text>Note (seulement visible par toi)</Text>
+        <MaterialIcons
+          name={
+            notebookValue.trim().length === 0
+              ? "my-library-add"
+              : "my-library-books"
+          }
+          size={20}
+          color="black"
+        />
+      </View>
+      <Text>{notebookValue}</Text>
     </View>
   );
 };
@@ -135,14 +155,15 @@ const styles = StyleSheet.create({
     height: height * 0.15,
     top: 0,
   },
-  middle: {
-    width: width * 0.95,
-    marginLeft: width * 0.025,
+  bottom: {
+    width: width * 0.9,
+    marginLeft: width * 0.05,
     marginTop: 80,
+    padding: 5,
     alignItems: "center",
     rowGap: 20,
+    justifyContent: "center",
   },
-  bottom: {},
   headings: {
     flexDirection: "row",
     columnGap: 10,
@@ -166,14 +187,16 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderWidth: 0.15,
     borderColor: "darkgrey",
+    alignItems: "center",
   },
   profileDataContainer: {
     position: "absolute",
     bottom: "-25%",
     flexDirection: "row",
     columnGap: 10,
-    marginLeft: "5%",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    width: "100%",
+    padding: 5,
   },
   quote: {
     textAlign: "center",
@@ -184,7 +207,7 @@ const styles = StyleSheet.create({
   },
   quoteContainer: {
     minWidth: "auto",
-    maxWidth: "80%",
+    maxWidth: "70%",
   },
   profileStatus: {
     flexDirection: "row",
@@ -201,7 +224,7 @@ const styles = StyleSheet.create({
     top: "20%",
   },
   editProfileBtn: {
-    minWidth: width * 0.95,
+    minWidth: width * 0.9,
     maxWidth: 350,
     flexDirection: "row",
     backgroundColor: "blue",
@@ -214,13 +237,14 @@ const styles = StyleSheet.create({
   },
   editBtnTxt: { color: "white" },
   userCredentialContainer: {
-    width: "90%",
+    width: "100%",
     marginBottom: 15,
   },
   userNameContainer: {
     flexDirection: "row",
     columnGap: 15,
     alignItems: "center",
+    justifyContent: "flex-start",
   },
   userName: { fontSize: 25, fontWeight: "900" },
   userId: { fontWeight: "100", fontSize: 14 },
@@ -232,8 +256,8 @@ const styles = StyleSheet.create({
   addFriendsbtn: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-end",
-    width: width * 0.95,
+    justifyContent: "space-between",
+    width: width * 0.9,
     columnGap: 30,
     backgroundColor: "white",
     padding: 15,
@@ -242,7 +266,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   userSignUpDateContainer: {
-    width: width * 0.95,
+    width: width * 0.9,
     rowGap: 15,
     backgroundColor: "white",
     padding: 12.5,
@@ -254,7 +278,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "light",
   },
-  notebook: {},
+  notebook: {
+    width: width * 0.9,
+    backgroundColor: "white",
+    padding: 12.5,
+    borderRadius: 17,
+    borderColor: "lightgrey",
+    borderWidth: 1,
+  },
+  notebookHead: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignContent: "center",
+  },
+  noteBookIcon: {},
 });
 
 export default Profile;
