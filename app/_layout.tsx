@@ -1,4 +1,5 @@
-import { Slot, SplashScreen } from "expo-router";
+import { NotebookProvider } from "@/context/NotebookContext";
+import { SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
 
@@ -23,7 +24,25 @@ const App = () => {
       </View>
     );
   }
-  return <Slot />;
+  return (
+    <NotebookProvider>
+      <Stack
+        screenOptions={{
+          headerTitleStyle: {
+            fontSize: 18,
+            color: "black",
+            fontWeight: "bold",
+          },
+        }}
+      >
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false }}
+        ></Stack.Screen>
+        <Stack.Screen name="screens"></Stack.Screen>
+      </Stack>
+    </NotebookProvider>
+  );
 };
 
 const styles = StyleSheet.create({

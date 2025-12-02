@@ -12,7 +12,7 @@ const TabLayout = () => {
     <Tabs
       screenOptions={{
         headerShown: false,
-        headerTitleStyle: { fontSize: 18, color: "black", fontWeight: "bold" },
+        //headerTitleStyle: { fontSize: 18, color: "black", fontWeight: "bold" },
         tabBarInactiveTintColor: "grey",
         tabBarActiveTintColor: "black",
       }}

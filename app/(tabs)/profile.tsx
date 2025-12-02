@@ -1,3 +1,4 @@
+import { NotebookContext, NotebookTxtType } from "@/context/NotebookContext";
 import OnlineStatusIndicator from "../../components/home_components/online_status_indicator";
 import {
   Entypo,
@@ -7,7 +8,8 @@ import {
   MaterialIcons,
   SimpleLineIcons,
 } from "@expo/vector-icons";
-import { useState } from "react";
+import { router } from "expo-router";
+import { useContext } from "react";
 import {
   Dimensions,
   ImageBackground,
@@ -15,7 +17,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from "react-native";
 
@@ -62,12 +63,16 @@ const Top = () => {
           <OnlineStatusIndicator online={false} right={4} bottom={4} />
         </Pressable>
         <Pressable style={styles.profileStatus}>
-          <FontAwesome6 name="circle-plus" size={20} color="black" />
-          <View style={styles.quoteContainer}>
-            <Text ellipsizeMode="tail" style={styles.quote}>
-              {quotes[Math.floor(Math.random() * quotes.length)]}
-            </Text>
-          </View>
+          <FontAwesome6
+            name="circle-plus"
+            size={20}
+            color="black"
+            //style={styles.circle}
+          />
+
+          <Text ellipsizeMode="tail" style={styles.quote}>
+            {quotes[Math.floor(Math.random() * quotes.length)]}
+          </Text>
         </Pressable>
       </View>
     </ImageBackground>
@@ -121,14 +126,18 @@ const Bottom = () => {
 };
 
 const Notebook = () => {
-  const [notebookValue, setNotebookValue] = useState("");
+  const notebook: NotebookTxtType | null = useContext(NotebookContext);
+  if (!notebook) return null;
   return (
-    <View style={styles.notebook}>
+    <Pressable
+      style={styles.notebook}
+      onPress={() => router.push("/screens/edit_notebook")}
+    >
       <View style={styles.notebookHead}>
         <Text>Note (seulement visible par toi)</Text>
         <MaterialIcons
           name={
-            notebookValue.trim().length === 0
+            notebook.notebookTxt.length === 0
               ? "my-library-add"
               : "my-library-books"
           }
@@ -136,8 +145,8 @@ const Notebook = () => {
           color="black"
         />
       </View>
-      <Text>{notebookValue}</Text>
-    </View>
+      <Text>{notebook.notebookTxt}</Text>
+    </Pressable>
   );
 };
 
@@ -205,21 +214,16 @@ const styles = StyleSheet.create({
     fontSize: 12.5,
     color: "grey",
   },
-  quoteContainer: {
-    minWidth: "auto",
-    maxWidth: "70%",
-  },
   profileStatus: {
     flexDirection: "row",
     columnGap: 5,
-    padding: 5,
-    maxWidth: "80%",
+    padding: 0,
     backgroundColor: "white",
     borderRadius: 17,
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#ededed",
-    alignSelf: "flex-end",
+
     position: "relative",
     top: "20%",
   },
