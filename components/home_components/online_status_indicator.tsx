@@ -26,9 +26,9 @@ const OnlineStatusIndicator = ({
 
 const styles = StyleSheet.create({
   onlineStatusIndicator: {
-    position: "absolute",
     width: "23%",
     height: "23%",
+    position: "absolute",
     borderRadius: 60,
     borderWidth: 4,
     outlineColor: "white",

@@ -1,11 +1,18 @@
 import { NotebookContext } from "@/context/NotebookContext";
 import { router, Stack } from "expo-router";
 import { useContext, useState } from "react";
-import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 
 const EditNotebook = () => {
   const notebook = useContext(NotebookContext);
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>(notebook?.notebookTxt ?? "");
   const [height, setHeight] = useState<number>(100);
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
@@ -28,12 +35,13 @@ const EditNotebook = () => {
           headerTitleAlign: "center",
         }}
       />
-
       <ScrollView style={styles.container}>
         <View style={styles.topTxtContainer}>
           <Text style={styles.topTxt}>Note(seulement visible par toi)</Text>
         </View>
-        <View style={[styles.txtInputContainer, { height: height }]}>
+        <KeyboardAvoidingView
+          style={[styles.txtInputContainer, { height: height }]}
+        >
           <TextInput
             multiline
             value={value}
@@ -48,7 +56,7 @@ const EditNotebook = () => {
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
           />
-        </View>
+        </KeyboardAvoidingView>
       </ScrollView>
     </>
   );

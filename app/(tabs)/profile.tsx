@@ -1,4 +1,8 @@
-import { NotebookContext, NotebookTxtType } from "@/context/NotebookContext";
+import {
+  NotebookContext,
+  NotebookProvider,
+  NotebookTxtType,
+} from "@/context/NotebookContext";
 import OnlineStatusIndicator from "../../components/home_components/online_status_indicator";
 import {
   Entypo,
@@ -53,7 +57,10 @@ const Top = () => {
           <MaterialIcons name="electric-bolt" size={20} color="white" />
           <Text style={{ color: "white" }}>Nitro</Text>
         </Pressable>
-        <Pressable style={styles.headingIconsContainer}>
+        <Pressable
+          style={styles.headingIconsContainer}
+          onPress={() => router.push("/screens/settings/settings")}
+        >
           <Fontisto name="player-settings" size={20} color="white" />
         </Pressable>
       </View>
@@ -63,12 +70,7 @@ const Top = () => {
           <OnlineStatusIndicator online={false} right={4} bottom={4} />
         </Pressable>
         <Pressable style={styles.profileStatus}>
-          <FontAwesome6
-            name="circle-plus"
-            size={20}
-            color="black"
-            //style={styles.circle}
-          />
+          <FontAwesome6 name="circle-plus" size={20} color="black" />
 
           <Text ellipsizeMode="tail" style={styles.quote}>
             {quotes[Math.floor(Math.random() * quotes.length)]}
@@ -120,7 +122,9 @@ const Bottom = () => {
           <SimpleLineIcons name="arrow-right" size={15} color="black" />
         </View>
       </Pressable>
-      <Notebook />
+      <NotebookProvider>
+        <Notebook />
+      </NotebookProvider>
     </View>
   );
 };
@@ -145,7 +149,7 @@ const Notebook = () => {
           color="black"
         />
       </View>
-      <Text>{notebook.notebookTxt}</Text>
+      {notebook.notebookTxt.length > 0 && <Text>{notebook.notebookTxt}</Text>}
     </Pressable>
   );
 };

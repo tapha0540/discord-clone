@@ -1,0 +1,245 @@
+import {
+  FontAwesome,
+  Fontisto,
+  Foundation,
+  Ionicons,
+  MaterialIcons,
+  SimpleLineIcons,
+} from "@expo/vector-icons";
+import {
+  ExternalPathString,
+  RelativePathString,
+  router,
+  Stack,
+} from "expo-router";
+import { useState } from "react";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+
+const Settings = () => {
+  const [inputSearch, setInputSearch] = useState<string>("");
+  const iconsSize = 25;
+  const iconsColor = "black";
+
+  return (
+    <>
+      <Stack.Screen
+        options={{
+          title: "settings",
+          headerTitle: "Paramètres",
+          headerTitleAlign: "center",
+        }}
+      />
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.inputSearchContainer}>
+            <FontAwesome
+              name="search"
+              style={styles.searchIcon}
+              size={20}
+              color="black"
+            />
+            <TextInput
+              value={inputSearch}
+              style={styles.inputSearch}
+              onChangeText={setInputSearch}
+              placeholder="Rechercher"
+            />
+          </View>
+          <View style={styles.settingsOptions}>
+            <SettingsOptionsList
+              title="Paramètres du compte"
+              icons={[
+                <MaterialIcons
+                  key={0}
+                  name="electric-bolt"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <FontAwesome
+                  key={1}
+                  name="user-circle"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <MaterialIcons
+                  key={2}
+                  name="emoji-people"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Fontisto
+                  key={3}
+                  name="locked"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Ionicons
+                  key={4}
+                  name="people"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Foundation
+                  key={5}
+                  name="key"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <MaterialIcons
+                  key={6}
+                  name="devices"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Ionicons
+                  key={7}
+                  name="extension-puzzle"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Fontisto
+                  key={8}
+                  name="film"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <MaterialIcons
+                  key={9}
+                  name="qr-code-scanner"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+              ]}
+              texts={[
+                "Obtenir Nitro",
+                "Compte",
+                "Contenu Social",
+                "Données et confidentialité",
+                "centre familial",
+                "Appliication autorissées",
+                "Appareils",
+                "Connexions",
+                "Clips",
+                "Scannez le code QR",
+              ]}
+              routesOnPressed={[
+                "/screens/settings/account",
+                "/screens/settings/get_nitro",
+              ]}
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </>
+  );
+};
+
+type RoutesOnPressedType =
+  | "/screens/settings/account"
+  | "/screens/settings/get_nitro";
+
+const SettingsOptionsList = ({
+  title,
+  texts,
+  icons,
+  routesOnPressed,
+}: {
+  title: string;
+  texts: string[];
+  icons: React.ReactNode[];
+  routesOnPressed: RoutesOnPressedType[];
+}) => {
+  return (
+    <View>
+      <Text style={styles.title}>{title}</Text>
+      <View style={styles.optionsListContainer}>
+        {texts.map((text, index) => {
+          return (
+            <Pressable
+              key={index}
+              style={styles.optionContainer}
+              onPress={() => router.push(routesOnPressed[0])}
+            >
+              {icons[index]}
+              <View style={styles.optionContainerLeft}>
+                <Text>{text}</Text>
+                <SimpleLineIcons name="arrow-right" size={15} color="black" />
+              </View>
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  inputSearchContainer: {
+    flexDirection: "row",
+    width: "85%",
+    margin: 15,
+    backgroundColor: "lightgrey",
+    borderRadius: 15,
+    justifyContent: "space-around",
+  },
+  searchIcon: {
+    alignSelf: "center",
+  },
+  inputSearch: {
+    width: "80%",
+    fontWeight: "thin",
+  },
+  settingsOptions: {
+    width: "85%",
+  },
+  title: {},
+  optionsListContainer: {
+    marginTop: 15,
+    rowGap: 20,
+    backgroundColor: "lightgrey",
+    padding: 10,
+    borderRadius: 20,
+  },
+  optionContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 2,
+  },
+  optionContainerLeft: {
+    flex: 1,
+    flexDirection: "row",
+    columnGap: 15,
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderBottomColor: "grey",
+    padding: 8,
+  },
+  optionsIcons: {
+    margin: 5,
+  },
+});
+export default Settings;
