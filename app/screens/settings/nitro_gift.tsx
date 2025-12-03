@@ -1,17 +1,16 @@
 import { Stack } from "expo-router";
 import { ScrollView } from "react-native";
 
-const SocialContent = () => {
+const NitroGift = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Contenu et social",
+          headerTitle: "Cadeau Nitro",
         }}
       />
       <ScrollView></ScrollView>
     </>
   );
 };
-
-export default SocialContent;
+export default NitroGift;

@@ -28,6 +28,7 @@ const App = () => {
     <NotebookProvider>
       <Stack
         screenOptions={{
+          headerTitleAlign: "center",
           headerTitleStyle: {
             fontSize: 18,
             color: "black",

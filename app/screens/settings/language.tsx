@@ -1,12 +1,12 @@
 import { Stack } from "expo-router";
 import { ScrollView, StyleSheet } from "react-native";
 
-const GetNitro = () => {
+const Language = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Obtenir Nitro",
+          headerTitle: "Langue",
         }}
       />
       <ScrollView style={styles.container}></ScrollView>
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GetNitro;
+export default Language;

@@ -1,17 +1,16 @@
 import {
+  Entypo,
   FontAwesome,
+  FontAwesome5,
+  FontAwesome6,
   Fontisto,
   Foundation,
   Ionicons,
   MaterialIcons,
+  Octicons,
   SimpleLineIcons,
 } from "@expo/vector-icons";
-import {
-  ExternalPathString,
-  RelativePathString,
-  router,
-  Stack,
-} from "expo-router";
+import { router, Stack } from "expo-router";
 import { useState } from "react";
 import {
   Pressable,
@@ -152,6 +151,186 @@ const Settings = () => {
                 "/screens/settings/scan_qr",
               ]}
             />
+            <SettingsOptionsList
+              title="Paramètres de facturation"
+              texts={["Boutique", "Quêtes", "Boost de serveur", "Cadeau Nitro"]}
+              icons={[
+                <Entypo
+                  key={0}
+                  name="shop"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <FontAwesome6
+                  key={1}
+                  name="medal"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Octicons
+                  key={2}
+                  name="diamond"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <FontAwesome5
+                  key={2}
+                  name="gift"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+              ]}
+              routesOnPressed={[
+                "/screens/settings/shop",
+                "/screens/settings/quest",
+                "/screens/settings/server_boost",
+                "/screens/settings/nitro_gift",
+              ]}
+            />
+            <SettingsOptionsList
+              title="Paramètres de l'appli"
+              texts={[
+                "Voix",
+                "Apparence",
+                "Accessibilité",
+                "Langue",
+                "Discuter",
+                "Navigateur web",
+                "Notifications",
+                "Icône de l'appli",
+                "Avancés",
+              ]}
+              icons={[
+                <FontAwesome
+                  key={0}
+                  name="microphone"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <FontAwesome6
+                  key={1}
+                  name="palette"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Octicons
+                  key={2}
+                  name="accessibility-inset"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Ionicons
+                  key={3}
+                  name="language"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <MaterialIcons
+                  key={4}
+                  name="panorama"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <FontAwesome5
+                  key={5}
+                  name="globe-africa"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <Ionicons
+                  key={6}
+                  name="notifications"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <MaterialIcons
+                  key={6}
+                  name="logo-dev"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <MaterialIcons
+                  key={7}
+                  name="settings"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+              ]}
+              routesOnPressed={[
+                "/screens/settings/voice",
+                "/screens/settings/appearance",
+                "/screens/settings/accessibility",
+                "/screens/settings/language",
+                "/screens/settings/discuss",
+                "/screens/settings/browser",
+                "/screens/settings/notifications",
+                "/screens/settings/app_icon",
+                "/screens/settings/advanced",
+              ]}
+            />
+            <SettingsOptionsList
+              title="Assistance"
+              texts={[
+                "Assistance",
+                "Transférer les journaux de débugage à l'assistance de l'appli",
+                "Remerciements",
+              ]}
+              icons={[
+                <FontAwesome5
+                  key={0}
+                  name="question-circle"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <FontAwesome6
+                  key={1}
+                  name="circle-exclamation"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+                <FontAwesome6
+                  key={1}
+                  name="circle-exclamation"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+              ]}
+              routesOnPressed={[]}
+            />
+            <SettingsOptionsList
+              title="Nouveautés"
+              texts={["Nouveautés"]}
+              icons={[
+                <FontAwesome6
+                  key={1}
+                  name="circle-exclamation"
+                  size={iconsSize}
+                  color={iconsColor}
+                  style={styles.optionsIcons}
+                />,
+              ]}
+              routesOnPressed={["/screens/settings/new_features"]}
+            />
+            <Pressable style={styles.logout}>
+              <MaterialIcons name="logout" size={iconsSize} color="red" />
+              <Text style={styles.logoutTxt}>Déconnexion</Text>
+            </Pressable>
           </View>
         </View>
       </ScrollView>
@@ -159,7 +338,7 @@ const Settings = () => {
   );
 };
 
-type RoutesOnPressedType =
+/*type RoutesOnPressedType =
   | "/screens/settings/get_nitro"
   | "/screens/settings/account"
   | "/screens/settings/social_content"
@@ -169,7 +348,13 @@ type RoutesOnPressedType =
   | "/screens/settings/devices"
   | "/screens/settings/logins"
   | "/screens/settings/clips"
-  | "/screens/settings/scan_qr";
+  | "/screens/settings/scan_qr"
+  | "/screens/settings/shop"
+  | "/screens/settings/quest"
+  | "/screens/settings/server_boost"
+  | "/screens/settings/nitro_gift"
+  | "/screens/settings/voice"
+  | "/screens/settings/";*/
 
 const SettingsOptionsList = ({
   title,
@@ -180,7 +365,7 @@ const SettingsOptionsList = ({
   title: string;
   texts: string[];
   icons: React.ReactNode[];
-  routesOnPressed: RoutesOnPressedType[];
+  routesOnPressed: any[];
 }) => {
   return (
     <View>
@@ -194,8 +379,17 @@ const SettingsOptionsList = ({
               onPress={() => router.push(routesOnPressed[index])}
             >
               {icons[index]}
-              <View style={styles.optionContainerLeft}>
-                <Text>{text}</Text>
+              <View
+                style={[
+                  styles.optionContainerLeft,
+                  // disable border bottom for the last element.
+                  index !== texts.length - 1 && {
+                    borderBottomColor: "grey",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <Text style={styles.optionTxt}>{text}</Text>
                 <SimpleLineIcons name="arrow-right" size={15} color="black" />
               </View>
             </Pressable>
@@ -232,7 +426,7 @@ const styles = StyleSheet.create({
   },
   title: {},
   optionsListContainer: {
-    marginTop: 15,
+    marginVertical: 20,
     rowGap: 20,
     backgroundColor: "lightgrey",
     padding: 10,
@@ -243,6 +437,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 2,
+    overflow: "hidden",
   },
   optionContainerLeft: {
     flex: 1,
@@ -250,12 +445,25 @@ const styles = StyleSheet.create({
     columnGap: 15,
     alignItems: "center",
     justifyContent: "space-between",
-    borderBottomWidth: 1,
-    borderBottomColor: "grey",
     padding: 8,
   },
   optionsIcons: {
     margin: 5,
   },
+  optionTxt: {
+    fontSize: 14,
+    fontWeight: "thin",
+    margin: 5,
+  },
+  logout: {
+    flexDirection: "row",
+    columnGap: 20,
+    backgroundColor: "lightgrey",
+    borderRadius: 20,
+    padding: 20,
+    alignItems: "center",
+    marginBottom: 25,
+  },
+  logoutTxt: {},
 });
 export default Settings;

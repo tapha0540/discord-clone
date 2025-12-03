@@ -1,17 +1,17 @@
 import { Stack } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-const DataAndConfidentiality = () => {
+const Discuss = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Données et confiidentialité",
+          headerTitle: "Discuter",
         }}
       />
       <ScrollView>
         <View style={styles.container}>
-          <Text>Utiliser les Données</Text>
+          <Text>afficher les images</Text>
         </View>
       </ScrollView>
     </>
@@ -21,8 +21,7 @@ const DataAndConfidentiality = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
   },
 });
 
-export default DataAndConfidentiality;
+export default Discuss;

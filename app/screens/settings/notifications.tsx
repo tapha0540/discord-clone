@@ -1,23 +1,22 @@
 import { Stack } from "expo-router";
 import { ScrollView, StyleSheet } from "react-native";
 
-const GetNitro = () => {
+const Notifications = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Obtenir Nitro",
+          headerTitle: "Notifications",
         }}
       />
-      <ScrollView style={styles.container}></ScrollView>
+      <ScrollView></ScrollView>
     </>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
 
-export default GetNitro;
+export default Notifications;

@@ -1,16 +1,17 @@
 import { Stack } from "expo-router";
 import { Text } from "react-native";
 
-const ScanQr = () => {
+const ServerBoost = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "",
+          headerTitle: "Boost de serveur",
         }}
       />
+      <Text>ServerBoost</Text>
     </>
   );
 };
 
-export default ScanQr;
+export default ServerBoost;

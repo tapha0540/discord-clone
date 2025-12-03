@@ -1,16 +1,17 @@
 import { Stack } from "expo-router";
 import { Text } from "react-native";
 
-const ScanQr = () => {
+const Appearance = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "",
+          headerTitle: "Appearance",
         }}
       />
+      <Text>Appearance</Text>
     </>
   );
 };
 
-export default ScanQr;
+export default Appearance;

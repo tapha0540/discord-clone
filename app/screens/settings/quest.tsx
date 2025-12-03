@@ -1,15 +1,15 @@
 import { Stack } from "expo-router";
 import { ScrollView, StyleSheet } from "react-native";
 
-const GetNitro = () => {
+const Quest = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Obtenir Nitro",
+          headerTitle: "Quêtes",
         }}
       />
-      <ScrollView style={styles.container}></ScrollView>
+      <ScrollView></ScrollView>
     </>
   );
 };
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GetNitro;
+export default Quest;

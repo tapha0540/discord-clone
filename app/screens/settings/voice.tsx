@@ -1,12 +1,12 @@
 import { Stack } from "expo-router";
 import { ScrollView } from "react-native";
 
-const SocialContent = () => {
+const Voice = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Contenu et social",
+          headerTitle: "Voix",
         }}
       />
       <ScrollView></ScrollView>
@@ -14,4 +14,4 @@ const SocialContent = () => {
   );
 };
 
-export default SocialContent;
+export default Voice;

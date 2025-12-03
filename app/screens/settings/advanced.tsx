@@ -1,16 +1,17 @@
 import { Stack } from "expo-router";
 import { Text } from "react-native";
 
-const ScanQr = () => {
+const AdvancedSettings = () => {
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: "",
+          headerTitle: "Avancés",
         }}
       />
+      <Text>AdvancedSettings</Text>
     </>
   );
 };
 
-export default ScanQr;
+export default AdvancedSettings;

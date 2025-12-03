@@ -50,10 +50,16 @@ const Top = () => {
       style={styles.top}
     >
       <View style={styles.headings}>
-        <Pressable style={styles.headingIconsContainer}>
+        <Pressable
+          style={styles.headingIconsContainer}
+          onPress={() => router.push("/screens/settings/shop")}
+        >
           <Entypo name="shop" size={20} color="white" />
         </Pressable>
-        <Pressable style={styles.nitroBtn}>
+        <Pressable
+          style={styles.nitroBtn}
+          onPress={() => router.push("/screens/settings/get_nitro")}
+        >
           <MaterialIcons name="electric-bolt" size={20} color="white" />
           <Text style={{ color: "white" }}>Nitro</Text>
         </Pressable>
@@ -71,8 +77,7 @@ const Top = () => {
         </Pressable>
         <Pressable style={styles.profileStatus}>
           <FontAwesome6 name="circle-plus" size={20} color="black" />
-
-          <Text ellipsizeMode="tail" style={styles.quote}>
+          <Text style={styles.quote}>
             {quotes[Math.floor(Math.random() * quotes.length)]}
           </Text>
         </Pressable>
@@ -149,7 +154,7 @@ const Notebook = () => {
           color="black"
         />
       </View>
-      {notebook.notebookTxt.length > 0 && <Text>{notebook.notebookTxt}</Text>}
+      <Text>{notebook.notebookTxt}</Text>
     </Pressable>
   );
 };
@@ -206,7 +211,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: "-25%",
     flexDirection: "row",
-    columnGap: 10,
+
     justifyContent: "space-around",
     width: "100%",
     padding: 5,
@@ -220,14 +225,13 @@ const styles = StyleSheet.create({
   },
   profileStatus: {
     flexDirection: "row",
-    columnGap: 5,
-    padding: 0,
+    padding: 3,
     backgroundColor: "white",
-    borderRadius: 17,
+    borderRadius: 20,
     alignItems: "center",
+    justifyContent: "space-around",
     borderWidth: 1,
     borderColor: "#ededed",
-
     position: "relative",
     top: "20%",
   },
