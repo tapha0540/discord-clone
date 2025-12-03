@@ -149,7 +149,7 @@ const Settings = () => {
                 "/screens/settings/devices",
                 "/screens/settings/logins",
                 "/screens/settings/clips",
-                "/screens/settings/scan_qr",
+                "screens/settings/scan_qr",
               ]}
             />
           </View>
@@ -191,7 +191,7 @@ const SettingsOptionsList = ({
             <Pressable
               key={index}
               style={styles.optionContainer}
-              onPress={() => router.push(routesOnPressed[index])}
+              onPress={() => router.push(routesOnPressed[0])}
             >
               {icons[index]}
               <View style={styles.optionContainerLeft}>
