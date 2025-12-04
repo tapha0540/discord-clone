@@ -365,7 +365,7 @@ const SettingsOptionsList = ({
   title: string;
   texts: string[];
   icons: React.ReactNode[];
-  routesOnPressed: any[];
+  routesOnPressed?: any[];
 }) => {
   return (
     <View>
@@ -376,7 +376,13 @@ const SettingsOptionsList = ({
             <Pressable
               key={index}
               style={styles.optionContainer}
-              onPress={() => router.push(routesOnPressed[index])}
+              onPress={
+                routesOnPressed
+                  ? () => {
+                      router.push(routesOnPressed[index]);
+                    }
+                  : null
+              }
             >
               {icons[index]}
               <View
@@ -408,7 +414,7 @@ const styles = StyleSheet.create({
   },
   inputSearchContainer: {
     flexDirection: "row",
-    width: "85%",
+    width: "90%",
     margin: 15,
     backgroundColor: "lightgrey",
     borderRadius: 15,
@@ -418,11 +424,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   inputSearch: {
-    width: "80%",
+    width: "82.5%",
     fontWeight: "thin",
   },
   settingsOptions: {
-    width: "85%",
+    width: "90%",
   },
   title: {},
   optionsListContainer: {

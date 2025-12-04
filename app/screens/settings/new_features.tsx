@@ -1,4 +1,3 @@
-import { HeaderTitle } from "@react-navigation/elements";
 import { Stack } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
