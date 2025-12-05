@@ -1,10 +1,10 @@
-import { Tabs } from "expo-router";
 import {
   FontAwesome,
   MaterialIcons,
   Octicons,
   SimpleLineIcons,
 } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
 const TabLayout = () => {
@@ -14,6 +14,7 @@ const TabLayout = () => {
         headerShown: false,
         tabBarInactiveTintColor: "grey",
         tabBarActiveTintColor: "black",
+        animation: "fade",
       }}
     >
       <Tabs.Screen

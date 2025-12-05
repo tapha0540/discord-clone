@@ -1,7 +1,13 @@
 import { Stack } from "expo-router";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const AccountSettings = () => {
+  const [indexTab, setIndexTab] = useState(0);
+  const tabs = [
+    <SecurityTab key="SecurityTab" />,
+    <StatusTab key="StatusTab" />,
+  ];
   return (
     <>
       <Stack.Screen
@@ -11,13 +17,33 @@ const AccountSettings = () => {
       />
       <View style={styles.container}>
         <View style={styles.top}>
-          <Text>Sécurité</Text>
+          <Pressable style={styles.topContainer} onPress={() => setIndexTab(0)}>
+            <Text style={[styles.topTxt, { marginRight: 30 }]}>Sécurité</Text>
+          </Pressable>
           <View style={styles.tab}></View>
-          <Text>Statut</Text>
+          <Pressable style={styles.topContainer} onPress={() => setIndexTab(1)}>
+            <Text style={[styles.topTxt, { marginLeft: 30 }]}>Statut</Text>
+          </Pressable>
         </View>
-        <ScrollView></ScrollView>
+        <ScrollView>{tabs[indexTab]}</ScrollView>
       </View>
     </>
+  );
+};
+
+const SecurityTab = () => {
+  return (
+    <View>
+      <Text>SecurityTab</Text>
+    </View>
+  );
+};
+
+const StatusTab = () => {
+  return (
+    <View>
+      <Text>StatusTab</Text>
+    </View>
   );
 };
 
@@ -27,22 +53,37 @@ const styles = StyleSheet.create({
   },
   top: {
     width: "80%",
+    height: 65,
     flexDirection: "row",
     position: "fixed",
     margin: 15,
     padding: 20,
+    justifyContent: "space-between",
     alignSelf: "center",
+    alignItems: "center",
     backgroundColor: "lightgrey",
     borderRadius: 25,
   },
+  topContainer: {
+    width: "50%",
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 5,
+  },
   topTxt: {
-    justifyContent: "space-around",
-    padding: 10,
+    padding: 2,
+    zIndex: 10,
   },
   tab: {
-    height: "95%",
+    width: "50%",
+    height: 55,
+    marginHorizontal: 5,
     position: "absolute",
-    backgroundColor: "red",
+    backgroundColor: "white",
+    alignSelf: "center",
+    borderRadius: 20,
+    marginLeft: "60%",
   },
 });
 

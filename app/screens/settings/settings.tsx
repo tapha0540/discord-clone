@@ -25,7 +25,105 @@ const Settings = () => {
   const [inputSearch, setInputSearch] = useState<string>("");
   const iconsSize = 25;
   const iconsColor = "black";
-
+  const accountSettings = {
+    title: "Paramètres du compte",
+    icons: [
+      <MaterialIcons
+        key={0}
+        name="electric-bolt"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <FontAwesome
+        key={1}
+        name="user-circle"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <MaterialIcons
+        key={2}
+        name="emoji-people"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <Fontisto
+        key={3}
+        name="locked"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <Ionicons
+        key={4}
+        name="people"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <Foundation
+        key={5}
+        name="key"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <MaterialIcons
+        key={6}
+        name="devices"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <Ionicons
+        key={7}
+        name="extension-puzzle"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <Fontisto
+        key={8}
+        name="film"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+      <MaterialIcons
+        key={9}
+        name="qr-code-scanner"
+        size={iconsSize}
+        color={iconsColor}
+        style={styles.optionsIcons}
+      />,
+    ],
+    texts: [
+      "Obtenir Nitro",
+      "Compte",
+      "Contenu Social",
+      "Données et confidentialité",
+      "centre familial",
+      "Application autorissées",
+      "Appareils",
+      "Connexions",
+      "Clips",
+      "Scannez le code QR",
+    ],
+    routesOnPressed: [
+      "/screens/settings/get_nitro",
+      "/screens/settings/account",
+      "/screens/settings/social_content",
+      "/screens/settings/data_and_confidentiality",
+      "/screens/settings/family_center",
+      "/screens/settings/authorised_applications",
+      "/screens/settings/devices",
+      "/screens/settings/logins",
+      "/screens/settings/clips",
+      "/screens/settings/scan_qr",
+    ],
+  };
   return (
     <>
       <Stack.Screen
@@ -53,103 +151,10 @@ const Settings = () => {
           </View>
           <View style={styles.settingsOptions}>
             <SettingsOptionsList
-              title="Paramètres du compte"
-              icons={[
-                <MaterialIcons
-                  key={0}
-                  name="electric-bolt"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <FontAwesome
-                  key={1}
-                  name="user-circle"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <MaterialIcons
-                  key={2}
-                  name="emoji-people"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <Fontisto
-                  key={3}
-                  name="locked"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <Ionicons
-                  key={4}
-                  name="people"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <Foundation
-                  key={5}
-                  name="key"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <MaterialIcons
-                  key={6}
-                  name="devices"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <Ionicons
-                  key={7}
-                  name="extension-puzzle"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <Fontisto
-                  key={8}
-                  name="film"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-                <MaterialIcons
-                  key={9}
-                  name="qr-code-scanner"
-                  size={iconsSize}
-                  color={iconsColor}
-                  style={styles.optionsIcons}
-                />,
-              ]}
-              texts={[
-                "Obtenir Nitro",
-                "Compte",
-                "Contenu Social",
-                "Données et confidentialité",
-                "centre familial",
-                "Application autorissées",
-                "Appareils",
-                "Connexions",
-                "Clips",
-                "Scannez le code QR",
-              ]}
-              routesOnPressed={[
-                "/screens/settings/get_nitro",
-                "/screens/settings/account",
-                "/screens/settings/social_content",
-                "/screens/settings/data_and_confidentiality",
-                "/screens/settings/family_center",
-                "/screens/settings/authorised_applications",
-                "/screens/settings/devices",
-                "/screens/settings/logins",
-                "/screens/settings/clips",
-                "/screens/settings/scan_qr",
-              ]}
+              title={accountSettings.title}
+              icons={accountSettings.icons}
+              texts={accountSettings.texts}
+              routesOnPressed={accountSettings.routesOnPressed}
             />
             <SettingsOptionsList
               title="Paramètres de facturation"
@@ -337,24 +342,6 @@ const Settings = () => {
     </>
   );
 };
-
-/*type RoutesOnPressedType =
-  | "/screens/settings/get_nitro"
-  | "/screens/settings/account"
-  | "/screens/settings/social_content"
-  | "/screens/settings/data_and_confidentiality"
-  | "/screens/settings/family_center"
-  | "/screens/settings/authorised_applications"
-  | "/screens/settings/devices"
-  | "/screens/settings/logins"
-  | "/screens/settings/clips"
-  | "/screens/settings/scan_qr"
-  | "/screens/settings/shop"
-  | "/screens/settings/quest"
-  | "/screens/settings/server_boost"
-  | "/screens/settings/nitro_gift"
-  | "/screens/settings/voice"
-  | "/screens/settings/";*/
 
 const SettingsOptionsList = ({
   title,
