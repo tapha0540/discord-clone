@@ -1,7 +1,15 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { SimpleLineIcons } from "@expo/vector-icons";
+// import BottomSheet from "@gorhom/bottom-sheet";
 import { Image } from "expo-image";
+import { Stack } from "expo-router";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import notifications from "../../assets/data/notifications.json";
-
 interface NotificationType {
   imgSrc: string;
   title: string;
@@ -14,26 +22,54 @@ const images: Map<string, string> = new Map([
 ]);
 
 const Notification = () => {
+  // const ref = useRef(null);
+  // const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Notifications récente</Text>
-      <View style={styles.notifications}>
-        {notifications.map((notification: NotificationType, index: number) => {
-          return (
-            <View key={index} style={styles.notificationContainer}>
-              <Image
-                source={
-                  images.get(notification.imgSrc) ?? images.get("react-logo")
-                }
-                style={styles.notificationImg}
-              />
-              <Text style={styles.notificationTitle}>{notification.title}</Text>
-              <Text style={styles.notificationDate}>{notification.date} J</Text>
-            </View>
-          );
-        })}
-      </View>
-    </ScrollView>
+    <>
+      <Stack.Screen
+        options={{
+          headerRight: ({ tintColor }) => {
+            return (
+              <TouchableOpacity
+                style={styles.headerRight}
+                // onPress={() => ref.current}
+              >
+                <SimpleLineIcons name="options" size={20} color={tintColor} />
+              </TouchableOpacity>
+            );
+          },
+        }}
+      />
+      <ScrollView style={styles.container}>
+        <Text style={styles.title}>Notifications récente</Text>
+        <View style={styles.notifications}>
+          {notifications.map(
+            (notification: NotificationType, index: number) => {
+              return (
+                <View key={index} style={styles.notificationContainer}>
+                  <Image
+                    source={
+                      images.get(notification.imgSrc) ??
+                      images.get("react-logo")
+                    }
+                    style={styles.notificationImg}
+                  />
+                  <Text style={styles.notificationTitle}>
+                    {notification.title}
+                  </Text>
+                  <Text style={styles.notificationDate}>
+                    {notification.date} J
+                  </Text>
+                </View>
+              );
+            },
+          )}
+        </View>
+        {/* <BottomSheet ref={ref} snapPoints={snapPoints}>
+          <Text>hello</Text>
+        </BottomSheet> */}
+      </ScrollView>
+    </>
   );
 };
 
@@ -42,6 +78,16 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: "white",
+  },
+  headerRight: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 40,
+    height: 40,
+    backgroundColor: "#ededed",
+    marginRight: 10,
+    borderRadius: 20,
   },
   title: {
     margin: 20,

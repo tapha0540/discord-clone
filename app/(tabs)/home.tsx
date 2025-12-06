@@ -1,10 +1,16 @@
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { Feather, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { useState } from "react";
-import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
-import { ChatGroupDataType } from "../../components/home_components/interfaces";
-import ChatGroupTabs from "../../components/home_components/chat_group_tabs";
-import PriavteChatTab from "../../components/home_components/private_chat_tab";
+import {
+  Dimensions,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+} from "react-native";
 import chatGroupsData from "../../assets/data/chat_groups_data.json";
+import ChatGroupTabs from "../../components/home_components/chat_group_tabs";
+import { ChatGroupDataType } from "../../components/home_components/interfaces";
+import PriavteChatTab from "../../components/home_components/private_chat_tab";
 
 const Home = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -36,6 +42,7 @@ const Left = ({
   setTabIndex: React.Dispatch<React.SetStateAction<number>>;
   chatGroupsData: ChatGroupDataType[];
 }) => {
+  const [isPlusIconPressed, setIsPlusIconPressed] = useState(false);
   return (
     <ScrollView
       contentContainerStyle={{ alignItems: "center", rowGap: 10 }}
@@ -62,6 +69,26 @@ const Left = ({
             />
           );
         })}
+        <Pressable
+          style={{
+            width: "100%",
+            backgroundColor: isPlusIconPressed ? "green" : "white",
+            padding: 10,
+            borderRadius: 50,
+          }}
+          onPress={() => {
+            setIsPlusIconPressed(true);
+            setTimeout(() => setIsPlusIconPressed(false), 200);
+          }}
+        >
+          <Feather
+            name="plus"
+            size={35}
+            style={{
+              color: isPlusIconPressed ? "white" : "green",
+            }}
+          />
+        </Pressable>
       </View>
     </ScrollView>
   );

@@ -1,11 +1,5 @@
-import {
-  FontAwesome,
-  MaterialIcons,
-  Octicons,
-  SimpleLineIcons,
-} from "@expo/vector-icons";
+import { FontAwesome, MaterialIcons, Octicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { StyleSheet, View } from "react-native";
 
 const TabLayout = () => {
   return (
@@ -14,7 +8,7 @@ const TabLayout = () => {
         headerShown: false,
         tabBarInactiveTintColor: "grey",
         tabBarActiveTintColor: "black",
-        animation: "fade",
+        animation: "shift",
       }}
     >
       <Tabs.Screen
@@ -32,13 +26,6 @@ const TabLayout = () => {
           title: "Notifications",
           headerShown: true,
           headerTitle: "Notifications",
-          headerRight: ({ tintColor }) => {
-            return (
-              <View style={styles.headerRight}>
-                <SimpleLineIcons name="options" size={20} color={tintColor} />
-              </View>
-            );
-          },
           tabBarIcon: ({ color, size }) => {
             return <Octicons name="bell-fill" size={size} color={color} />;
           },
@@ -59,18 +46,5 @@ const TabLayout = () => {
     </Tabs>
   );
 };
-
-const styles = StyleSheet.create({
-  headerRight: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: 40,
-    height: 40,
-    backgroundColor: "#ededed",
-    marginRight: 10,
-    borderRadius: 20,
-  },
-});
 
 export default TabLayout;

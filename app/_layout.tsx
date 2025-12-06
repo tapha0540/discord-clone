@@ -34,6 +34,7 @@ const App = () => {
             color: "black",
             fontWeight: "bold",
           },
+          animation: "slide_from_right",
         }}
       >
         <Stack.Screen

@@ -1,3 +1,4 @@
+import SettingsOptionsList from "@/components/ui/SettingsOptionsList";
 import { Stack } from "expo-router";
 import { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -17,13 +18,21 @@ const AccountSettings = () => {
       />
       <View style={styles.container}>
         <View style={styles.top}>
-          <Pressable style={styles.topContainer} onPress={() => setIndexTab(0)}>
-            <Text style={[styles.topTxt, { marginRight: 30 }]}>Sécurité</Text>
-          </Pressable>
-          <View style={styles.tab}></View>
-          <Pressable style={styles.topContainer} onPress={() => setIndexTab(1)}>
-            <Text style={[styles.topTxt, { marginLeft: 30 }]}>Statut</Text>
-          </Pressable>
+          <View style={styles.tabBar}>
+            <Pressable
+              style={styles.tabControllers}
+              onPress={() => setIndexTab(0)}
+            >
+              <Text style={[styles.topTxt, { marginRight: 30 }]}>Sécurité</Text>
+            </Pressable>
+            <View style={[styles.tab, indexTab === 1 && { right: 0 }]}></View>
+            <Pressable
+              style={styles.tabControllers}
+              onPress={() => setIndexTab(1)}
+            >
+              <Text style={[styles.topTxt, { marginLeft: 30 }]}>Statut</Text>
+            </Pressable>
+          </View>
         </View>
         <ScrollView>{tabs[indexTab]}</ScrollView>
       </View>
@@ -33,8 +42,29 @@ const AccountSettings = () => {
 
 const SecurityTab = () => {
   return (
-    <View>
-      <Text>SecurityTab</Text>
+    <View style={styles.tabsContonainers}>
+      <SettingsOptionsList
+        title="Information du compte"
+        texts={["Nom d'utilisateur", "Nom d'affichage", "E-mail", "Téléphone"]}
+        details={[
+          "moustaphafall_0540",
+          "Moustapha FALL",
+          "fmoustapha095@gmail.com",
+        ]}
+      />
+      <SettingsOptionsList
+        title="Comment tu te connectes à ton compte"
+        texts={[
+          "Mot de passe",
+          "Clés de sécurité",
+          "Activer l'application d'authentification",
+        ]}
+        details={[null, "Ajouté: 0"]}
+      />
+      <SettingsOptionsList
+        title="Gestion du compte"
+        texts={["Désactiver le compte", "Supprimer le compte"]}
+      />
     </View>
   );
 };
@@ -52,21 +82,26 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   top: {
-    width: "80%",
-    height: 65,
-    flexDirection: "row",
+    width: "100%",
     position: "fixed",
+  },
+  tabBar: {
+    width: "85%",
+    height: 50,
+    flexDirection: "row",
     margin: 15,
-    padding: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 2,
+    position: "fixed",
     justifyContent: "space-between",
     alignSelf: "center",
     alignItems: "center",
     backgroundColor: "lightgrey",
     borderRadius: 25,
   },
-  topContainer: {
+  tabControllers: {
     width: "50%",
-    height: 50,
+    height: 40,
     justifyContent: "center",
     alignItems: "center",
     zIndex: 5,
@@ -77,13 +112,17 @@ const styles = StyleSheet.create({
   },
   tab: {
     width: "50%",
-    height: 55,
+    height: 42,
     marginHorizontal: 5,
     position: "absolute",
     backgroundColor: "white",
     alignSelf: "center",
     borderRadius: 20,
-    marginLeft: "60%",
+  },
+  tabsContonainers: {
+    width: "95%",
+    marginLeft: "2.5%",
+    paddingHorizontal: 10,
   },
 });
 

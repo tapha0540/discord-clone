@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { ScrollView, StyleSheet } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 
 const GetNitro = () => {
   return (
@@ -9,7 +9,13 @@ const GetNitro = () => {
           headerTitle: "Obtenir Nitro",
         }}
       />
-      <ScrollView style={styles.container}></ScrollView>
+      <ScrollView style={styles.container}>
+        <ActivityIndicator
+          color="blue"
+          style={styles.activityIndicator}
+          size={50}
+        />
+      </ScrollView>
     </>
   );
 };
@@ -17,6 +23,11 @@ const GetNitro = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  activityIndicator: {
+    position: "absolute",
+    marginTop: "70%",
+    alignSelf: "center",
   },
 });
 

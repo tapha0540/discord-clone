@@ -1,3 +1,4 @@
+import SettingsOptionsList from "@/components/ui/SettingsOptionsList";
 import {
   Entypo,
   FontAwesome,
@@ -8,9 +9,8 @@ import {
   Ionicons,
   MaterialIcons,
   Octicons,
-  SimpleLineIcons,
 } from "@expo/vector-icons";
-import { router, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { useState } from "react";
 import {
   Pressable,
@@ -285,6 +285,12 @@ const Settings = () => {
                 "/screens/settings/app_icon",
                 "/screens/settings/advanced",
               ]}
+              details={[
+                "Détection de la voix",
+                "Automatique",
+                null,
+                "Français",
+              ]}
             />
             <SettingsOptionsList
               title="Assistance"
@@ -343,56 +349,6 @@ const Settings = () => {
   );
 };
 
-const SettingsOptionsList = ({
-  title,
-  texts,
-  icons,
-  routesOnPressed,
-}: {
-  title: string;
-  texts: string[];
-  icons: React.ReactNode[];
-  routesOnPressed?: any[];
-}) => {
-  return (
-    <View>
-      <Text style={styles.title}>{title}</Text>
-      <View style={styles.optionsListContainer}>
-        {texts.map((text, index) => {
-          return (
-            <Pressable
-              key={index}
-              style={styles.optionContainer}
-              onPress={
-                routesOnPressed
-                  ? () => {
-                      router.push(routesOnPressed[index]);
-                    }
-                  : null
-              }
-            >
-              {icons[index]}
-              <View
-                style={[
-                  styles.optionContainerLeft,
-                  // disable border bottom for the last element.
-                  index !== texts.length - 1 && {
-                    borderBottomColor: "grey",
-                    borderBottomWidth: 1,
-                  },
-                ]}
-              >
-                <Text style={styles.optionTxt}>{text}</Text>
-                <SimpleLineIcons name="arrow-right" size={15} color="black" />
-              </View>
-            </Pressable>
-          );
-        })}
-      </View>
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -417,35 +373,7 @@ const styles = StyleSheet.create({
   settingsOptions: {
     width: "90%",
   },
-  title: {},
-  optionsListContainer: {
-    marginVertical: 20,
-    rowGap: 20,
-    backgroundColor: "lightgrey",
-    padding: 10,
-    borderRadius: 20,
-  },
-  optionContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 2,
-    overflow: "hidden",
-  },
-  optionContainerLeft: {
-    flex: 1,
-    flexDirection: "row",
-    columnGap: 15,
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 8,
-  },
   optionsIcons: {
-    margin: 5,
-  },
-  optionTxt: {
-    fontSize: 14,
-    fontWeight: "thin",
     margin: 5,
   },
   logout: {

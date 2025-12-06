@@ -1,7 +1,34 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { UserContact } from "./interfaces";
 import { FontAwesome, FontAwesome6 } from "@expo/vector-icons";
+import { useState } from "react";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { UserContact } from "./interfaces";
 import OnlineStatusIndicator from "./online_status_indicator";
+
+const Contact = ({ contact }: { contact: UserContact }) => {
+  const [bg, setBg] = useState("transparent");
+  return (
+    <Pressable
+      onPressIn={() => setBg("#ededed")}
+      onPressOut={() => setBg("transparent")}
+      style={[styles.contactOptionContainer, { backgroundColor: bg }]}
+    >
+      <View
+        style={{
+          flexDirection: "row",
+          columnGap: 10,
+          alignItems: "center",
+        }}
+      >
+        <View style={styles.contactOption}>
+          <FontAwesome6 name="circle-user" size={50} color={contact.color} />
+          <OnlineStatusIndicator online={contact.online} bottom={8} right={8} />
+        </View>
+        <Text>{`${contact.firstName} ${contact.lastName}`}</Text>
+      </View>
+      <Text style={{ fontSize: 12, color: "grey" }}>5mo</Text>
+    </Pressable>
+  );
+};
 
 const PriavteChatTab = () => {
   const userContacts: UserContact[] = [
@@ -67,19 +94,26 @@ const PriavteChatTab = () => {
           </View>
         </View>
       </View>
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        style={styles.middle}
-      >
-        {userContacts.map(({ color, online }, index: number) => {
-          return (
-            <View key={index} style={styles.contact}>
-              <FontAwesome6 name="circle-user" size={50} color={color} />
-              <OnlineStatusIndicator online={online} bottom={20} right={20} />
-            </View>
-          );
-        })}
+      <ScrollView>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={styles.middle}
+        >
+          {userContacts.map(({ color, online }, index: number) => {
+            return (
+              <View key={index} style={styles.contact}>
+                <FontAwesome6 name="circle-user" size={50} color={color} />
+                <OnlineStatusIndicator online={online} bottom={20} right={20} />
+              </View>
+            );
+          })}
+        </ScrollView>
+        <View>
+          {userContacts.map((contact, index) => (
+            <Contact key={index} contact={contact} />
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
@@ -98,10 +132,10 @@ const styles = StyleSheet.create({
     width: "90%",
     marginTop: 25,
     rowGap: 20,
+    position: "sticky",
   },
   middle: {
-    marginTop: 21,
-    marginBottom: 21,
+    marginVertical: 21,
   },
   iconsContainer: {
     flexDirection: "row",
@@ -138,6 +172,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   iconSearch: { margin: 8 },
+  contactOptionContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    columnGap: 5,
+    justifyContent: "space-between",
+    borderRadius: 20,
+    alignSelf: "center",
+  },
+  contactOption: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
 });
 
 export default PriavteChatTab;
