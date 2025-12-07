@@ -7,23 +7,23 @@ Features
 
 Recreated Discord-inspired layout
 
-### Home screens
+## Home screens
 
 ![home1](./app-screenshots/home1.jpg)
 
 ![home2](./app-screenshots/home2.jpg)
 
-### Notifications screens
+## Notifications screens
 
 ![notifications1](./app-screenshots/notifications1.jpg)
 
 ![notifications2](./app-screenshots/notifications2.jpg)
 
-### Profile screens
+## Profile screens
 
 ![profile](./app-screenshots/profile.jpg)
 
-### Settings screens
+## Settings screens
 
 ![settings1](./app-screenshots/settings1.jpg)
 
