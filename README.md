@@ -9,13 +9,13 @@ Recreated Discord-inspired layout
 
 ## Home screens
 
-![home1](./app-screenshots/home1.jpg)
+## ![home1](./app-screenshots/home1.jpg)
 
 ![home2](./app-screenshots/home2.jpg)
 
 ## Notifications screens
 
-![notifications1](./app-screenshots/notifications1.jpg)
+## ![notifications1](./app-screenshots/notifications1.jpg)
 
 ![notifications2](./app-screenshots/notifications2.jpg)
 
@@ -25,9 +25,9 @@ Recreated Discord-inspired layout
 
 ## Settings screens
 
-![settings1](./app-screenshots/settings1.jpg)
+## ![settings1](./app-screenshots/settings1.jpg)
 
-![settings2](./app-screenshots/settings2.jpg)
+## ![settings2](./app-screenshots/settings2.jpg)
 
 ![settings3](./app-screenshots/settings3.jpg)
 
@@ -56,10 +56,12 @@ Project Structure
 
 Installation
 
+```bash
 git clone https://github.com/tapha0540/discord-clone
 cd discord-clone
 npm install
-npx expo start
+np` expo start
+```
 
 About the Project
 
