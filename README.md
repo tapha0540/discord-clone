@@ -57,10 +57,10 @@ Project Structure
 Installation
 
 ```bash
-git clone https://github.com/tapha0540/discord-clone
-cd discord-clone
-npm install
-np` expo start
+    git clone https://github.com/tapha0540/discord-clone
+    cd discord-clone
+    npm install
+    npm expo start
 ```
 
 About the Project
