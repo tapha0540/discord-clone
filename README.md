@@ -1,50 +1,64 @@
-# Welcome to your Expo app 👋
+Discord-Clone UI (Expo – React Native)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile reproduction of the Discord user interface, built with Expo and React Native.
+The project focuses only on the visual layout and interactions, without implementing real backend features.
 
-## Get started
+Features
 
-1. Install dependencies
+Recreated Discord-inspired layout
 
-   ```bash
-   npm install
-   ```
+### Home screens
 
-2. Start the app
+[home1](./app-screenshots/home1.jpg)
 
-   ```bash
-   npx expo start
-   ```
+[home2](./app-screenshots/home2.jpg)
 
-In the output, you'll find options to open the app in a
+### Notifications screens
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+[notifications1](./app-screenshots/notifications1.jpg)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+[notifications2](./app-screenshots/notifications2.jpg)
 
-## Get a fresh project
+### Profile screens
 
-When you're ready, run:
+[profile](./app-screenshots/profile.jpg)
 
-```bash
-npm run reset-project
-```
+### Settings screens
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+[settings1](./app-screenshots/settings1.jpg)
+[settings2](./app-screenshots/settings2.jpg)
+[settings3](./app-screenshots/settings3.jpg)
+Smooth transitions and clean styling
 
-## Learn more
+Responsive design for mobile screens
 
-To learn more about developing your project with Expo, look at the following resources:
+Tech Stack
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Expo + React Native
 
-## Join the community
+TypeScript
 
-Join our community of developers creating universal apps.
+Expo Router
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+React Native Reanimated (optional for animations)
+
+Project Structure
+
+/app
+/(tabs)
+/screens
+/components
+/ui
+/home_components
+
+Installation
+
+git clone https://github.com/tapha0540/discord-clone
+cd discord-clone
+npm install
+npx expo start
+
+About the Project
+
+This project recreates the Discord mobile interface to practice UI building, navigation, and component composition in React Native.
+It can serve as a base for future implementations such as real-time messaging or authentication.
