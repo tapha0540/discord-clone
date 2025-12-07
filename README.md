@@ -9,25 +9,28 @@ Recreated Discord-inspired layout
 
 ### Home screens
 
-[home1](./app-screenshots/home1.jpg)
+![home1](./app-screenshots/home1.jpg)
 
-[home2](./app-screenshots/home2.jpg)
+![home2](./app-screenshots/home2.jpg)
 
 ### Notifications screens
 
-[notifications1](./app-screenshots/notifications1.jpg)
+![notifications1](./app-screenshots/notifications1.jpg)
 
-[notifications2](./app-screenshots/notifications2.jpg)
+![notifications2](./app-screenshots/notifications2.jpg)
 
 ### Profile screens
 
-[profile](./app-screenshots/profile.jpg)
+![profile](./app-screenshots/profile.jpg)
 
 ### Settings screens
 
-[settings1](./app-screenshots/settings1.jpg)
-[settings2](./app-screenshots/settings2.jpg)
-[settings3](./app-screenshots/settings3.jpg)
+![settings1](./app-screenshots/settings1.jpg)
+
+![settings2](./app-screenshots/settings2.jpg)
+
+![settings3](./app-screenshots/settings3.jpg)
+
 Smooth transitions and clean styling
 
 Responsive design for mobile screens
